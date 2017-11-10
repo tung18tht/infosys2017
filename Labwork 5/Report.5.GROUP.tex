@@ -1,0 +1,291 @@
+%----------------------------------------------------------------------------------------
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS -DONT NEED TO TOUCH
+%----------------------------------------------------------------------------------------
+\documentclass{article}
+\usepackage{fancyhdr} % Required for custom headers
+% \usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+
+\usepackage{subcaption}
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{color}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+\usepackage{courier} % Required for the courier font
+% \usepackage{comment}
+% \usepackage{multirow}
+\usepackage{amsmath}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{geometry}
+\usepackage{pdflscape}
+\usepackage{pdfpages}
+\usepackage{booktabs}
+\usepackage{geometry}
+\setlength{\heavyrulewidth}{1.5pt}
+\setlength{\abovetopsep}{4pt}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ : \hmwkTitle} % Top center head
+\rhead{} %Nothing
+\cfoot{} % Bottom center footer
+\rfoot{\thepage} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%   DOCUMENT STRUCTURE COMMANDS
+%   Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+}
+
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+
+%----------------------------------------------------------------------------------------
+%   NAME AND CLASS SECTION ***SPECIFY PERSONAL DETAILS HERE***
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Labwork 5} % Assignment title
+% \newcommand{\hmwkDueDate}{Wednesday,\ January\ 18,\ 2017} % Due date
+\newcommand{\hmwkClass}{Information\ Systems} % Course/class
+% \newcommand{\hmwkClassTime}{10:05AM} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Nghiem Thi Phuong} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Nguyen Duc Tung} % Your name
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+% \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+%%TITLE PAGE INSERT--------
+\begin{document}
+\maketitle
+\clearpage
+%%-------------------
+
+%%Problem 1_________________________
+\begin{homeworkProblem}[Labwork 5]
+
+\begin{homeworkSection}{What is the average salary of each employee?}
+\begin{lstlisting}[language=SQL]
+SELECT EMP_NO, AVG(SALARY) FROM SALARIES GROUP BY EMP_NO;
+\end{lstlisting}
+Output:
+\begin{lstlisting}
+...
+| 499996 |  63134.1429 |
+| 499997 |  66475.8667 |
+| 499998 |  46665.5556 |
+| 499999 |  70625.0000 |
++--------+-------------+
+300024 rows in set (2.18 sec)
+\end{lstlisting}
+\end{homeworkSection}
+
+\begin{homeworkSection}{How much was each employee paid in total?}
+\begin{lstlisting}[language=SQL]
+SELECT EMP_NO, SUM(SALARY) FROM SALARIES GROUP BY EMP_NO;
+\end{lstlisting}
+Output:
+\begin{lstlisting}
+...
+| 499996 |      441939 |
+| 499997 |      997138 |
+| 499998 |      419990 |
+| 499999 |      353125 |
++--------+-------------+
+300024 rows in set (2.18 sec)
+\end{lstlisting}
+\end{homeworkSection}
+
+\begin{homeworkSection}{Minimum, maximum and total salaries of each department?}
+\begin{lstlisting}[language=SQL]
+SELECT DEPT_NO, MIN(SALARY), MAX(SALARY), SUM(SALARY)
+FROM DEPT_EMP JOIN SALARIES ON DEPT_EMP.EMP_NO = SALARIES.EMP_NO
+GROUP BY DEPT_NO;
+\end{lstlisting}
+Output:
+\begin{lstlisting}
++---------+-------------+-------------+-------------+
+| DEPT_NO | MIN(SALARY) | MAX(SALARY) | SUM(SALARY) |
++---------+-------------+-------------+-------------+
+| d001    |       39127 |      145128 | 13725425266 |
+| d002    |       38812 |      142395 | 11650834677 |
+| d003    |       38735 |      141953 |  9363811425 |
+| d004    |       38623 |      138273 | 41554438942 |
+| d005    |       38849 |      144434 | 48179456393 |
+| d006    |       38786 |      132103 | 10865203635 |
+| d007    |       39169 |      158220 | 40030089342 |
+| d008    |       38851 |      130211 | 11969730427 |
+| d009    |       38836 |      144866 | 13143639841 |
++---------+-------------+-------------+-------------+
+9 rows in set (11.31 sec)
+\end{lstlisting}
+\end{homeworkSection}
+
+\begin{homeworkSection}{Which departments have paid more than 20 Billion dollars for their employees?}
+\begin{lstlisting}[language=SQL]
+SELECT DEPT_NO, SUM(SALARY) AS TOTAL
+FROM DEPT_EMP JOIN SALARIES ON DEPT_EMP.EMP_NO = SALARIES.EMP_NO
+GROUP BY DEPT_NO HAVING TOTAL > 20000000000;
+\end{lstlisting}
+Output:
+\begin{lstlisting}
++---------+-------------+
+| DEPT_NO | TOTAL       |
++---------+-------------+
+| d004    | 41554438942 |
+| d005    | 48179456393 |
+| d007    | 40030089342 |
++---------+-------------+
+3 rows in set (11.35 sec)
+\end{lstlisting}
+\end{homeworkSection}
+
+\begin{homeworkSection}{Total salaries of male employees in each department?}
+\begin{lstlisting}[language=SQL]
+SELECT DEPT_NO, SUM(SALARY) FROM DEPT_EMP
+    JOIN EMPLOYEES ON DEPT_EMP.EMP_NO = EMPLOYEES.EMP_NO AND GENDER = 'M'
+    JOIN SALARIES ON DEPT_EMP.EMP_NO = SALARIES.EMP_NO
+GROUP BY DEPT_NO;
+\end{lstlisting}
+Output:
+\begin{lstlisting}
++---------+-------------+
+| DEPT_NO | SUM(SALARY) |
++---------+-------------+
+| d001    |  8352455367 |
+| d002    |  6940675318 |
+| d003    |  5619533959 |
+| d004    | 24873889749 |
+| d005    | 28961357095 |
+| d006    |  6472073211 |
+| d007    | 24051537190 |
+| d008    |  7174578852 |
+| d009    |  7865587983 |
++---------+-------------+
+9 rows in set (9.96 sec)
+\end{lstlisting}
+\end{homeworkSection}
+
+\begin{homeworkSection}{Total salaries of department managers for each department, from highest to lowest?}
+\begin{lstlisting}[language=SQL]
+SELECT DEPT_NO, SUM(SALARY) AS TOTAL FROM DEPT_MANAGER
+    JOIN SALARIES ON DEPT_MANAGER.EMP_NO = SALARIES.EMP_NO
+GROUP BY DEPT_NO ORDER BY TOTAL DESC;
+\end{lstlisting}
+Output:
+\begin{lstlisting}
++---------+---------+
+| DEPT_NO | TOTAL   |
++---------+---------+
+| d006    | 4162118 |
+| d004    | 3374004 |
+| d009    | 3187661 |
+| d001    | 3093009 |
+| d007    | 2915118 |
+| d008    | 2558661 |
+| d002    | 2549372 |
+| d003    | 2098298 |
+| d005    | 2028376 |
++---------+---------+
+9 rows in set (0.02 sec)
+\end{lstlisting}
+\end{homeworkSection}
+
+\end{homeworkProblem}
+\clearpage
+%%_______________________________
+
+%%APPENDICES____________________
+%%\clearpage
+%%______________________________
+\end{document}
